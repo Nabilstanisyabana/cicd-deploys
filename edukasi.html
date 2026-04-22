@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edukasi Jaringan</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f0f8ff;
+        }
+
+        header {
+            background: #5dade2;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        .section {
+            padding: 40px;
+            text-align: center;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            width: 200px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .detail-box {
+            margin-top: 20px;
+            padding: 20px;
+            background: #d6eaf8;
+            border-radius: 10px;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 15px;
+            border: none;
+            background: #3498db;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #2e86c1;
+        }
+
+        form input, form textarea {
+            display: block;
+            margin: 10px auto;
+            padding: 10px;
+            width: 250px;
+        }
+
+        footer {
+            background: #5dade2;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Edukasi Jaringan</h1>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#materi">Materi</a>
+        <a href="#quiz">Quiz</a>
+        <a href="#kontak">Kontak</a>
+    </nav>
+</header>
+
+<section id="home" class="section">
+    <h2>Selamat Datang</h2>
+    <p>Belajar jaringan komputer dari dasar sampai mahir dengan cara yang interaktif.</p>
+</section>
+
+<section id="materi" class="section">
+    <h2>Materi Jaringan</h2>
+    <div class="card-container">
+        <div class="card" onclick="showDetail('osi')">
+            <h3>Model OSI</h3>
+            <p>Pelajari 7 layer OSI</p>
+        </div>
+        <div class="card" onclick="showDetail('tcp')">
+            <h3>TCP/IP</h3>
+            <p>Konsep dasar internet</p>
+        </div>
+        <div class="card" onclick="showDetail('topologi')">
+            <h3>Topologi</h3>
+            <p>Jenis jaringan</p>
+        </div>
+    </div>
+
+    <div id="detail" class="detail-box"></div>
+</section>
+
+<section id="quiz" class="section">
+    <h2>Quiz</h2>
+    <p>Apa kepanjangan dari OSI?</p>
+    <button onclick="checkAnswer('a')">Open System Interconnection</button>
+    <button onclick="checkAnswer('b')">Open Software Internet</button>
+    <p id="result"></p>
+</section>
+
+<section id="kontak" class="section">
+    <h2>Kontak</h2>
+    <form onsubmit="submitForm(event)">
+        <input type="text" placeholder="Nama" required>
+        <input type="email" placeholder="Email" required>
+        <textarea placeholder="Pesan" required></textarea>
+        <button type="submit">Kirim</button>
+    </form>
+    <p id="formResult"></p>
+</section>
+
+<footer>
+    <p>&copy; 2026 Edukasi Jaringan</p>
+</footer>
+
+<script>
+    function showDetail(type) {
+        let content = '';
+
+        if (type === 'osi') {
+            content = 'OSI adalah model jaringan dengan 7 layer: Physical, Data Link, Network, Transport, Session, Presentation, Application.';
+        } else if (type === 'tcp') {
+            content = 'TCP/IP adalah protokol utama internet yang terdiri dari 4 layer utama.';
+        } else if (type === 'topologi') {
+            content = 'Topologi jaringan meliputi star, bus, ring, dan mesh.';
+        }
+
+        document.getElementById('detail').innerText = content;
+    }
+
+    function checkAnswer(answer) {
+        const result = document.getElementById('result');
+        if (answer === 'a') {
+            result.innerText = 'Benar!';
+        } else {
+            result.innerText = 'Salah!';
+        }
+    }
+
+    function submitForm(e) {
+        e.preventDefault();
+        document.getElementById('formResult').innerText = 'Pesan berhasil dikirim!';
+    }
+</script>
+
+</body>
+</html>
